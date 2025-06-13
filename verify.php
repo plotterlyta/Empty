@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     error_log("Telegram response: $response");
 
     // Redirect or show success message
-    header("Location: thank-you.html");
+    header("Location: order.html");
     exit;
 
 } else {
