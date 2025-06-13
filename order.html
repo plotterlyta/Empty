@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Success</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow: hidden;
+        }
+        .glow {
+            text-shadow: 0 0 8px #00cc00;
+        }
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        .slide-in {
+            animation: slideIn 0.8s ease-out;
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .success-icon {
+            animation: checkmark 1s ease-in-out;
+        }
+        @keyframes checkmark {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .container {
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 640px) {
+            .container {
+                max-width: 80%;
+            }
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+            }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="container text-center slide-in">
+        <div class="flex justify-center mb-6">
+            <i class='bx bx-check-circle text-5xl sm:text-6xl text-green-500 success-icon'></i>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold glow mb-4">Transaction Successful</h1>
+        <p class="text-base sm:text-lg md:text-xl text-gray-400 mb-6">Your free item has been successfully claimed!</p>
+        <div class="bg-gray-900 p-4 sm:p-6 rounded-lg shadow-lg">
+            <p class="text-gray-400 mb-2 text-sm sm:text-base">Transaction ID: <span class="text-green-500">TXN987654321</span></p>
+            <p class="text-gray-400 mb-4 text-sm sm:text-base">Date: <span class="text-green-500">June 12, 2025</span></p>
+            <a href="index.php" class="inline-block bg-blue-600 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-blue-700 transition pulse"><i class='bx bx-home-alt mr-2'></i>Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
